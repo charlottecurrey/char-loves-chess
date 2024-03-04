@@ -9,7 +9,7 @@ const King = ({ color }) => {
     <img
       src={image}
       alt={`${color} king`}
-      style={{ width: "80%", height: "80%" }}
+      style={{ width: "100%", height: "100%" }}
     />
   );
 };

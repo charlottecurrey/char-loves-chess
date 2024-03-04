@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import King from "../pieces/King";
+import Queen from "../pieces/Queen";
+import Bishop from "./pieces/Bishop";
 
 const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
   const [highlight, setHighlight] = useState(false);
@@ -30,6 +32,8 @@ const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
         return <King color={color} />;
       case "q":
         return <Queen color={color} />;
+      case "b": // Add the case for the bishop
+        return <Bishop color={color} />;
       // Add cases for other piece types
       default:
         return null;
