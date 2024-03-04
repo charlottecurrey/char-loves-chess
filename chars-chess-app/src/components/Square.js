@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import King from "../pieces/King";
 import Queen from "../pieces/Queen";
-import Bishop from "./pieces/Bishop";
+import Bishop from "../pieces/Bishop";
+import Knight from "../pieces/Knight";
+import Rook from "../pieces/Rook";
+import Pawn from "../pieces/Pawn";
 
 const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
   const [highlight, setHighlight] = useState(false);
@@ -34,7 +37,14 @@ const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
         return <Queen color={color} />;
       case "b": // Add the case for the bishop
         return <Bishop color={color} />;
+      case "n":
+        return <Knight color={color} />;
+      case "r":
+        return <Rook color={color} />;
+      case "p":
+        return <Pawn color={color} />;
       // Add cases for other piece types
+
       default:
         return null;
     }
