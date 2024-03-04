@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Board from "./components/Board";
 import GameInfo from "./components/GameInfo";
-import { initialBoardState, isInCheck, isInCheckmate } from "./utils/gameLogic";
+import {
+  initialBoardState,
+  isInCheck,
+  isInCheckmate,
+  makeMove,
+} from "./utils/gameLogic";
 import "./App.css";
 
 function App() {
