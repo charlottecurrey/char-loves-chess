@@ -1,3 +1,4 @@
+// Square.js
 import React, { useState } from "react";
 import King from "../pieces/King";
 import Queen from "../pieces/Queen";
@@ -6,7 +7,15 @@ import Knight from "../pieces/Knight";
 import Rook from "../pieces/Rook";
 import Pawn from "../pieces/Pawn";
 
-const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
+const Square = ({
+  piece,
+  squareColor,
+  onDragOver,
+  onDragStart,
+  onDrop,
+  row,
+  col,
+}) => {
   const [highlight, setHighlight] = useState(false);
 
   const handleDragStart = (e) => {
@@ -23,8 +32,7 @@ const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
     setHighlight(false);
   };
 
-  const backgroundColor =
-    highlight || piece.startsWith("w") ? "lightgray" : "darkgray";
+  const backgroundColor = highlight ? "lightgreen" : squareColor;
 
   const renderPiece = () => {
     const color = piece.charAt(0) === "w" ? "white" : "black";
@@ -35,7 +43,7 @@ const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
         return <King color={color} />;
       case "q":
         return <Queen color={color} />;
-      case "b": // Add the case for the bishop
+      case "b":
         return <Bishop color={color} />;
       case "n":
         return <Knight color={color} />;
@@ -43,8 +51,6 @@ const Square = ({ piece, onDragOver, onDragStart, onDrop }) => {
         return <Rook color={color} />;
       case "p":
         return <Pawn color={color} />;
-      // Add cases for other piece types
-
       default:
         return null;
     }
