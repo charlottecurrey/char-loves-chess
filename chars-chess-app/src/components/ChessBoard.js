@@ -2,7 +2,14 @@ import React from "react";
 import Square from "./Square";
 import { getSquareColor } from "../utils/helpers";
 
-const ChessBoard = ({ board, onDragStart, onDragOver, onDrop }) => {
+const ChessBoard = ({
+  board,
+  onDragStart,
+  onDragOver,
+  onDrop,
+  sourceSquare,
+  targetSquare,
+}) => {
   const handleDragStart = (e, squareIndex) => {
     onDragStart(e, squareIndex);
   };
@@ -13,11 +20,15 @@ const ChessBoard = ({ board, onDragStart, onDragOver, onDrop }) => {
   };
 
   const handleDrop = (e, targetSquare) => {
-    onDrop(e, targetSquare);
+    const sourceSquare = e.dataTransfer.getData("text/plain");
+    onDrop(sourceSquare, targetSquare);
   };
 
   const renderSquare = (i, j) => {
-    const piece = board[i][j];
+    const piece =
+      sourceSquare === `${i},${j}`
+        ? board[targetSquare[0]][targetSquare[1]]
+        : board[i][j];
     const squareIndex = `${i},${j}`;
 
     return (
@@ -42,7 +53,11 @@ const ChessBoard = ({ board, onDragStart, onDragOver, onDrop }) => {
     );
   };
 
-  return <div>{board.map((_, i) => renderRow(i))}</div>;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div>{board.map((_, i) => renderRow(i))}</div>
+    </div>
+  );
 };
 
 export default ChessBoard;

@@ -56,16 +56,18 @@ const isValidMove = (board, sourceSquare, targetSquare, currentPlayer) => {
 export const makeMove = (board, sourceSquare, targetSquare, currentPlayer) => {
   // Check if the move is valid
   if (!isValidMove(board, sourceSquare, targetSquare, currentPlayer)) {
-    return board;
+    return { newBoard: board, sourceSquare: null, targetSquare: null };
   }
 
   // Get the source and target pieces
-  const sourcePiece = getPiece(board, sourceSquare);
-  const targetPiece = getPiece(board, targetSquare);
+  const [sourcePieceRow, sourcePieceCol] = sourceSquare.split(",").map(Number);
+  const [targetPieceRow, targetPieceCol] = targetSquare.split(",").map(Number);
+  const sourcePiece = board[sourcePieceRow][sourcePieceCol];
+  const targetPiece = board[targetPieceRow][targetPieceCol];
 
   // Check if the source piece belongs to the current player
   if (!sourcePiece.startsWith(currentPlayer.charAt(0))) {
-    return board;
+    return { newBoard: board, sourceSquare: null, targetSquare: null };
   }
 
   // Create a copy of the board
@@ -80,5 +82,5 @@ export const makeMove = (board, sourceSquare, targetSquare, currentPlayer) => {
     // Implement any additional logic for capturing pieces
   }
 
-  return newBoard;
+  return { newBoard, sourceSquare, targetSquare };
 };

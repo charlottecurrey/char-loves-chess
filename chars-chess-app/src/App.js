@@ -24,8 +24,7 @@ function App() {
     e.preventDefault();
   };
 
-  const handleDrop = (e, targetSquare) => {
-    const sourceSquare = e.dataTransfer.getData("text/plain");
+  const handleDrop = (sourceSquare, targetSquare) => {
     handleMove(sourceSquare, targetSquare);
   };
 
@@ -65,6 +64,8 @@ function App() {
         onDragStart={handleDragStart}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
+        sourceSquare={sourceSquare}
+        targetSquare={targetSquare}
       />
     </div>
   );
